@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-// step 2
+// step 4
 
 const Feedback = (props) => {
   const { good, setGood, neutral, setNeutral, bad, setBad } = props;
@@ -24,12 +24,18 @@ const Statistics = (props) => {
   return (
     <div>
       <h1>Statistics</h1>
-      <p>Good {good}</p>
-      <p>Neutral {neutral}</p>
-      <p>Bad {bad}</p>
-      <p>All {all} </p>
-      <p>Average {average}</p>
-      <p>Positive {positive}</p>
+      {all == 0 ? (
+        <p>No feedback given</p>
+      ) : (
+        <div>
+          <p>Good {good}</p>
+          <p>Neutral {neutral}</p>
+          <p>Bad {bad}</p>
+          <p>All {all} </p>
+          <p>Average {average}</p>
+          <p>Positive {positive}</p>
+        </div>
+      )}
     </div>
   );
 };
