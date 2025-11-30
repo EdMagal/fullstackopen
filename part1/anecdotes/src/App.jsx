@@ -16,16 +16,25 @@ const App = () => {
     "The only way to go fast, is to go well.",
   ];
   const length = anecdotes.length;
+  const votes = Array(length).fill(0);
+
   const generateRandomQuote = () => {
     const randomIndex = Math.floor(Math.random() * length);
     setSelected(randomIndex);
   };
 
+  const incrementVote = (index) => {
+    setVoteCounts(voteCounts.map((vote, i) => (i === index ? vote + 1 : vote)));
+  };
+
   const [selected, setSelected] = useState(0);
+  const [voteCounts, setVoteCounts] = useState(votes);
 
   return (
     <div>
       <p>{anecdotes[selected]}</p>
+      <p>has {voteCounts[selected]} votes</p>
+      <Button handleClick={() => incrementVote(selected)} text="Vote" />
       <Button handleClick={() => generateRandomQuote()} text="Next anecdote" />
     </div>
   );
