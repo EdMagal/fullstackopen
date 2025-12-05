@@ -1,12 +1,16 @@
 import { useState } from "react";
 
-//2.6: The Phonebook Step 1
+//2.6: The Phonebook Step 2
 const App = () => {
   const [persons, setPersons] = useState([{ name: "Arto Hellas" }]);
   const [newName, setNewName] = useState("");
 
   const addPerson = (event) => {
     event.preventDefault();
+    if (persons.some((person) => person.name === newName)) {
+      alert(`${newName} is already added to phonebook`);
+      return;
+    }
     setPersons(persons.concat({ name: newName }));
     setNewName(""); // Clear the input field after adding
   };
